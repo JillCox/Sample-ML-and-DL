@@ -1,7 +1,7 @@
 
 pacman::p_load(tidyverse, odbc, googleway, googlesheets, sqldf)
 
-api_key <- 'AIzaSyBUKxjAyTZ1RhU7ZKlBaK9q-RlytLQ4GUU'
+api_key <- 'AI-RlytLQ4GUU'
 
 
 #which google sheets do you have access to?
@@ -18,7 +18,6 @@ BusinessList <- gs_read(ss=BusinessList, ws = "Sheet1")
 
 # convert to a data frame
 BusinessList <- as.data.frame(BusinessList)
-
 
 
 #cycle through each state, each company
@@ -56,10 +55,10 @@ message(paste('Finished Row', row))
 
 con_warehouse <- dbConnect(odbc(),
                            Driver = "SQL Server",
-                           Server = "freightwaves.ctaqnedkuefm.us-east-2.rds.amazonaws.com",
-                           Database = "Warehouse",
-                           UID = "fwdbmain",
-                           PWD = "7AC?Ls9_z3W#@XrR",
+                           Server = "rds.amazonaws.com",
+                           Database = "Ware",
+                           UID = "UID",
+                           PWD = "Password",
                            Port = 1433)
 
 home_depot_try <- sqldf("SELECT DISTINCT * FROM home_depot_try")
