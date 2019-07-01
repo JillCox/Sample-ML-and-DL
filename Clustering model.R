@@ -3,14 +3,14 @@ pacman::p_load(data.table, geosphere, sqldf, odbc, dplyr)
 
 con_staging <- dbConnect(odbc(),
                          Driver = "SQL Server",
-                         Server = "freightwaves.ctaqnedkuefm.us-east-2.rds.amazonaws.com", 
-                         Database = "Staging",
-                         UID = "fwdbmain",
-                         PWD = "7AC?Ls9_z3W#@XrR",
+                         Server = "2.rds.amazonaws.com", 
+                         Database = "Stage",
+                         UID = "UID",
+                         PWD = "Password",
                          Port = 1433)
 
 Fleetcomplete <- dbGetQuery(con_staging," SELECT FleetID, PersonID, TruckID, Date, Distance, Cycle, Duration, DutyStatus, OccurredAt, endedat, Lat, Long, zip, zip3
-                            FROM dbo.FleetComplete
+                            FROM dbo.table
                             WHERE Date >= DATEADD(day, -7, GETDATE()) and Date <= GETDATE()
                             and PersonID is not NULL
                             and Cycle != 'Canada 70hr/7day'
@@ -287,10 +287,10 @@ rm(Driversummary)
 Driversummary3$Date <- Sys.Date()
 con_warehouse <- dbConnect(odbc(),
                            Driver = "SQL Server",
-                           Server = "freightwaves.ctaqnedkuefm.us-east-2.rds.amazonaws.com",
-                           Database = "Warehouse",
-                           UID = "fwdbmain",
-                           PWD = "7AC?Ls9_z3W#@XrR",
+                           Server = "rds.amazonaws.com",
+                           Database = "Ware",
+                           UID = "UID",
+                           PWD = "password",
                            Port = 1433)
 
 
